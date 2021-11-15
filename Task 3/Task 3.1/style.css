@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    background-color: aquamarine;
+    width: 1280px;
+    height: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+}
+.btn {
+    
+    width: 250px;
+    height: 250px;
+    margin: 50px;
+}
