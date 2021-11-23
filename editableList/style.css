@@ -1,6 +1,19 @@
-li{
-    width: 200px;
-    height:20px;
- 
+* {
+    
+    box-sizing: border-box;
+    list-style-type: none;
+    cursor: default;
 }
 
+.orderList > input {
+    border: none;
+    width: auto;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.orderList > input:focus {
+    cursor: text;
+}
+.input {
+    cursor: text;
+}

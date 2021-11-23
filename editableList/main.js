@@ -1,59 +1,62 @@
-const arrForFunck = ['milk','bread', 'cheeze', 'beer','cola'];
-const inputIn = document.querySelector('#input');
-const addButton = document.querySelector('#add');
-const removeButton = document.querySelector('#remove');
-const orderList = document.querySelector('#orderList');
+const arrForFunck = [];
+const inputIn = document.querySelector(".input");
+const addButton = document.querySelector(".addBtn");
+const removeButton = document.querySelector(".removeBtn");
+const orderList = document.querySelector(".orderList");
+const container = document.querySelector(".container");
 
-function createOlList(arr) {
-  const array = arr;
-  const arrayOfList = [];
-  const olList = document.querySelector('#orderList');
-  
-  array.forEach( element => {
-    arrayOfList.push('<li>' + element + '</li>');
-  })
+(function containerStyle() {
+  container.style.border = " 2px dashed lightblue";
+  container.style.padding = "10px";
+  container.style.width = "400px";
+})();
 
-  olList.innerHTML =  arrayOfList.join('');
- 
+removeButton.setAttribute("disabled", true);
 
-  if(!arrForFunck.length){
-    removeButton.setAttribute("disabled", "disabled");
-    removeButton.style.backgroundColor="red";
-  }else{
-    removeButton.removeAttribute("disabled", "disabled");
-    removeButton.style.backgroundColor="inherit";
+const displayList = (input, list) => {
+  input.value = "";
+  list.innerHTML = "";
+  arrForFunck.forEach((el, i) => {
+    list.innerHTML += `<li class="orderList" data-id="${i}">${
+      i + 1
+    }.<input type="text" value="${el}"></li>`;
+  });
+};
+
+function heandlerButtons(e) {
+  const target = e.target;
+
+  if (target.classList.contains("removeBtn")) {
+    if (arrForFunck.length) {
+      arrForFunck.pop();
+      displayList(inputIn, orderList);
+
+      if (!arrForFunck.length) removeButton.setAttribute("disabled", true);
+    };
+  };
+
+  if (target.classList.contains("addBtn")) {
+    if (inputIn.value) {
+      arrForFunck.push(inputIn.value);
+      displayList(inputIn, orderList);
+
+      if (arrForFunck.length) {
+        removeButton.removeAttribute("disabled");
+      };
+    };
+  };
+};
+
+function changeElem(e) {
+  const target = e.target;
+
+  if (target.closest(".orderList")?.dataset?.id) {
+    const id = target.closest(".orderList").dataset.id;
+    const value = target.closest(".orderList input").value;
+
+    arrForFunck.splice(id, 1, value);
   }
 }
 
-createOlList(arrForFunck)
-
-
-function addElement() {
-
-  if(inputIn.value){
-    arrForFunck.push(inputIn.value);
-    inputIn.value = "";
-    createOlList(arrForFunck);
-  } else{
-    alert('Введите текст')
-  }
-
-};
-
-
-function removeElement() {
-  arrForFunck.pop();
-  createOlList(arrForFunck);
-};
-    
-function changeLi(e){
- e.target.innerHTML = `<input type="text" value="${e.target.innerHTML}">`
-}
-orderList.addEventListener('click', changeLi)
-addButton.addEventListener('click', addElement);
-removeButton.addEventListener('click', removeElement);
-
-
-
-
-
+container.addEventListener("click", heandlerButtons);
+container.addEventListener("change", changeElem);
