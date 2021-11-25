@@ -4,41 +4,21 @@ let currenYear = now.getFullYear();
 let currentMonth = now.getMonth() + 1;
 
 
-
-const displaySelect = (() => {
-  const selectMonth = document.querySelector('.monthSelect');
-  const selectYear = document.querySelector('.yearSelect');
-
-  const monthArr = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  const now = new Date();
-
-  monthArr.forEach((item, index) => {
-    selectMonth.innerHTML += `<option value="${index}">${item}</option>`
-  });
-
-  selectYear.innerHTML = '<option value="0">Select Year</option>'
-  for (let i = 1980; i <= now.getFullYear(); i++) {
-    selectYear.innerHTML += `<option value="${i}">${i}</option>`
-  }
-})();
-
 function createCalendar(elem, year, month) {
 
     const monthForJs = month - 1;
     const currentDate = new Date(year, monthForJs);
     const currenYearText = currentDate.getFullYear();
     const currentMonthText = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
-    let headerTable = '<div id="title">Календарь</div>';
+    const currentMontControlPanel = document.querySelector('.current_month');
+    const currentYearControlPanel = document.querySelector('.current_year');
 
 
-    const currentMonthControlPanel = ` ${currentMonthText[monthForJs]} `;
-    const currentYearControlPanel = ` ${currenYearText} `;
+    currentMontControlPanel.innerHTML = `${currentMonthText[monthForJs]}`;
+    currentYearControlPanel.innerHTML = ` ${currenYearText} `;
 
-    
-    let controlPanal = `<div id="controlPanel">   ${currentMonthControlPanel}  ${currentYearControlPanel}   </div>`;
-    
-    let  tableDefault = `${headerTable} ${controlPanal} 
+    (function renderTable() {
+      let  tableDefault = `
       <table>
         <tr>
           <th>Mo</th>
@@ -75,10 +55,10 @@ function createCalendar(elem, year, month) {
     }
 
     tableDefault += '</tr></table>';
-
     elem.innerHTML = tableDefault;
-
-  }
+    })()
+    
+  };
 
   function getDay(date) { 
     let day = date.getDay();
@@ -89,43 +69,65 @@ function createCalendar(elem, year, month) {
   }
 
   
-  createCalendar(calendar, currenYear, currentMonth);
+createCalendar(calendar, currenYear, currentMonth);
 
 
 
-changeData.onclick = function () {
-    const whatMonth = prompt("Выберите месяц?", 11);
-    const whatYear = prompt("Выберите год?", 2021);
-    createCalendar(calendar, whatYear, whatMonth);
-};
+(function handleClick() {
+  
+const prevYearButton = document.querySelector('.prevYear');
+const prevMonthButton = document.querySelector('.prevMonth');
+const nextYearButton = document.querySelector('.nextYear');
+const nextMonthButton = document.querySelector('.nextMonth');
 
-
-const prevYearButton = document.querySelector('#prevYear');
-const prevMonthButton = document.querySelector('#prevMonth');
-const nextYearButton = document.querySelector('#nextYear');
-const nextMonthButton = document.querySelector('#nextMonth');
 
 const minusYear = function() {
-  createCalendar(calendar, currenYear-- , currentMonth);
-  
+  createCalendar(calendar, --currenYear , currentMonth);
 }
 
 const plusYear = function() {
-  createCalendar(calendar, currenYear++, currentMonth);
+  createCalendar(calendar, ++currenYear, currentMonth);
 }
 
 const minusMonth = function() {
-  createCalendar(calendar, currenYear, currentMonth--);
+  if(currentMonth < 2) {
+    createCalendar(calendar, --currenYear, currentMonth = 12)
+  } else {
+    createCalendar(calendar, currenYear, --currentMonth)
+  }
+}
+ 
+const plusMonth = function () {
+  if(currentMonth > 11) {
+    createCalendar(calendar, ++currenYear, currentMonth = 1)
+   
+  } else {
+    createCalendar(calendar, currenYear, ++currentMonth)
+  }
 }
 
-const plusMonth = function () {
-  createCalendar(calendar, currenYear, currentMonth++);
-}
+changeData.onclick = function () {
+  const whatMonth = prompt("Выберите месяц?", 11);
+  const whatYear = prompt("Выберите год?", 2021);
+  createCalendar(calendar, whatYear, whatMonth);
+};
 
 prevYearButton.addEventListener('click', minusYear);
 prevMonthButton.addEventListener('click', minusMonth);
 nextMonthButton.addEventListener('click', plusMonth);
 nextYearButton.addEventListener('click', plusYear);
+
+})();
+
+
+
+
+
+
+
+
+
+
 
 
 // class DateHandler {

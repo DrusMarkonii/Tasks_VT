@@ -20,78 +20,91 @@ table {
     margin: 0 auto;
     
  }
- th {
-    border: 1px solid grey;
-    color:rgb(255, 255, 255);
-    font-size: 1.3em;
- }
- td {
-    color : cornsilk;
-    border: 1px solid grey;
-    text-align: center;
- }
- #clearCell {
-     background-color: rgb(176, 154, 189);
- }
+th {
+  border: 1px solid grey;
+  color:rgb(255, 255, 255);
+  font-size: 1.3em;
+}
+td {
+  color : cornsilk;
+  border: 1px solid grey;
+  text-align: center;
+}
+#clearCell {
+    background-color: rgb(176, 154, 189);
+}
  
- table {
-    border-collapse: collapse; 
-    line-height: 1.1;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background:  radial-gradient(farthest-corner at 40% 50%, rgb(120, 103, 168), #403b61);
-    color: #0C213B;
-  }
+table {
+  border-collapse: collapse; 
+  line-height: 1.1;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background:  radial-gradient(farthest-corner at 40% 50%, rgb(120, 103, 168), #403b61);
+  color: #0C213B;
+}
 
-  #title{
+.title{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 3em;
+  padding: 10px; 
+  margin-bottom: 40px;
+  color: #ee1010;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.8);
+  text-decoration: underline;
+}
+
+
+#changeData{
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 100px;
+  width: 280px;
+  opacity: 1;
+  
+}
+#changData:hover {
+  background-color: #306632;
+  transform:scale(1.1);
+  font-size: 18px;
+}
+
+.button-box{
     display: flex;
     justify-content: center;
-    font-weight: bold;
-    font-size: 3em;
-    padding: 10px; 
-    margin-bottom: 40px;
-    color: #1f15e4;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.8);
-    text-decoration: underline;
-  }
+}
 
+#Weekend{
+  color: red;
+}
 
-  #changeData{
-    background-color: #4CAF50; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 100px;
-    width: 280px;
-    opacity: 1;
-    
-  }
-  #changData:hover {
-    background-color: #306632;
-    transform:scale(1.1);
-    font-size: 18px;
-  }
+.controlPanel{
+  color: #306632;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight:bold;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
 
-  .button-box{
-      display: flex;
-      justify-content: center;
-  }
+span {
+  margin: 5px;
+}
+.btnControlPanel {
+  margin: 0 10px;
+  width: 40px;
+};
 
-  #Weekend{
-    color: red;
-  }
-
-  #controlPanel{
-    color: #306632;
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    text-transform: uppercase;
-    font-size: 25px;
-    font-weight:bold;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  }
+.current_Date{
+  min-width: 400px;
+  padding: 0 5px;
+}
