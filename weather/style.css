@@ -1,0 +1,38 @@
+.card{
+    display: inline-block;
+    font-family: serif;
+    text-align: center;
+    width: 150px;
+    height: 220px;
+    background-color: rgba(196, 227, 228, 0.808);
+    border: 2px solid rgb(137, 137, 231);
+  }
+  
+  
+  .card:hover{
+    box-shadow: 0 0 7px black;
+  }
+  
+  .date, .city-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    font-size: 1.1em;
+    background-color: #0097B9;
+    color: rgb(255, 255, 255);
+  }
+  
+  .icon{
+    width: 114px;
+    height: 94px;
+    background-color: AliceBlue;
+    margin: 0 auto 19px;
+  }
+  
+  
+  .temperature{
+    font-size: 21px;
+  }
+  
+  
